@@ -1,0 +1,124 @@
+import React, {
+  createRef,
+  forwardRef,
+  memo,
+  useEffect,
+  useImperativeHandle,
+  Ref,
+  ReactNode,
+} from 'react';
+
+import Popover from '../Popover';
+import Input from '../Input';
+import Calendar from '../Calendar';
+// import Notice from '../Notice';
+import Time from '../TimePicker/Time';
+import Icon from '../Icon';
+import usePopoverConfig from '../hooks/usePopoverConfig';
+
+import { DatePickerProps, displayToFormatAndTimeMode } from './DatePicker';
+import { displayToFormatAndTimeMode as displayToFormatAndTimeModeM } from './Month';
+import { SPopup, readonlyInputCls } from './style';
+import usePicker from './usePicker';
+import Footer from './Footer';
+
+export type RangePickerRef = { focus: () => void } | undefined;
+
+const RangePickerWithoutMemo = forwardRef(
+  (
+    {
+      prefix,
+      onActiveChange,
+      type = 'date',
+      readonly,
+      tip,
+      error,
+      footerTip,
+      ...pickProps
+    }: DatePickerProps & {
+      prefix?: boolean;
+      onActiveChange: (active: boolean) => void;
+      type?: 'date' | 'month';
+      readonly?: boolean;
+      tip?: ReactNode;
+      error?: ReactNode;
+      footerTip?: ReactNode;
+    },
+    ref: Ref<RangePickerRef>,
+  ) => {
+    const [
+      inputProps,
+      ,
+      popoverProps,
+      popupProps,
+      calendarProps,
+      timeProps,
+      footerProps,
+      { error: pickerError, active },
+    ] = usePicker(
+      {
+        ...pickProps,
+      },
+      type === 'month' ? displayToFormatAndTimeModeM : displayToFormatAndTimeMode,
+      type,
+    );
+
+    const inputRef = createRef<HTMLInputElement>();
+
+    useImperativeHandle(
+      ref,
+      () => {
+        return {
+          focus: () => inputRef?.current?.focus(),
+        };
+      },
+      [inputRef],
+    );
+    useEffect(() => {
+      onActiveChange(active);
+    }, [active, onActiveChange]);
+    const popoverConfigProps = usePopoverConfig();
+
+    const CalendarComp = type === 'month' ? Calendar.Month : Calendar;
+
+    return readonly ? (
+      <span className={readonlyInputCls}>{inputProps.value}</span>
+    ) : (
+      <Popover
+        popup={
+          <SPopup {...popupProps}>
+            <CalendarComp
+              {...calendarProps}
+              sidebar={
+                type === 'month' ? null : timeProps.mode.length ? <Time {...timeProps} /> : null
+              }
+            />
+            {pickerError && (
+              // <Notice styleType="error" closable={false}>
+              <span>{pickerError}</span>
+              // </Notice>
+            )}
+            {error && (
+              // <Notice styleType="error" closable={false}>
+              <span>{error}</span>
+              // </Notice>
+            )}
+            {tip && { tip }}
+            <Footer {...footerProps} tip={footerTip} />
+          </SPopup>
+        }
+        {...popoverConfigProps}
+        {...popoverProps}
+      >
+        <Input
+          {...inputProps}
+          prefix={prefix ? <Icon type="calendar" /> : null}
+          customStyle={{ border: 'none', boxShadow: 'none', background: 'none' }}
+          ref={inputRef}
+        />
+      </Popover>
+    );
+  },
+);
+
+export default memo(RangePickerWithoutMemo);

@@ -1,0 +1,14 @@
+import { DesignTokens } from './interface';
+export declare const tuple: <T extends string[]>(...args: T) => T;
+export declare const Sizes: ['sm', 'md', 'lg'];
+export declare type Size = typeof Sizes[number];
+export declare const offsetValue: (value: string, offset: number) => string;
+export declare const getHeightBySize: (DT: DesignTokens, size: Size) => string;
+export declare const offsetHeightBySize: (DT: DesignTokens, size: Size, offset: number) => string;
+export declare const getPaddingBySize: (DT: DesignTokens, size: Size) => string;
+export declare const offsetPaddingBySize: (DT: DesignTokens, size: Size, offset: number) => string;
+export declare const ignoreProps: (...props: string[]) => (prop: string) => boolean;
+export declare const getControlHeightBySize: (DT: DesignTokens, size: Size) => string;
+export declare const getControlFontSizeBySize: (DT: DesignTokens, size: Size) => string;
+export declare const getControlSpacingBySize: (DT: DesignTokens, size: Size) => string;
+export declare const execSizeCal: (size: string, formula: string) => string;

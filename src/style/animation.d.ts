@@ -1,0 +1,16 @@
+export declare const slideUpIn: import('_@emotion_serialize@0.11.16@@emotion/serialize').Keyframes;
+export declare const slideUpOut: import('_@emotion_serialize@0.11.16@@emotion/serialize').Keyframes;
+export declare const slideDownIn: import('_@emotion_serialize@0.11.16@@emotion/serialize').Keyframes;
+export declare const slideDownOut: import('_@emotion_serialize@0.11.16@@emotion/serialize').Keyframes;
+export declare const fadeIn: import('_@emotion_serialize@0.11.16@@emotion/serialize').Keyframes;
+export declare const fadeOut: import('_@emotion_serialize@0.11.16@@emotion/serialize').Keyframes;
+export declare const bounceIn: import('_@emotion_serialize@0.11.16@@emotion/serialize').Keyframes;
+export declare const bounceOut: import('_@emotion_serialize@0.11.16@@emotion/serialize').Keyframes;
+export declare const zoomIn: import('_@emotion_serialize@0.11.16@@emotion/serialize').Keyframes;
+export declare const zoomOut: import('_@emotion_serialize@0.11.16@@emotion/serialize').Keyframes;
+export declare const slideOutDown: import('_@emotion_serialize@0.11.16@@emotion/serialize').Keyframes;
+export declare const slideInDown: import('_@emotion_serialize@0.11.16@@emotion/serialize').Keyframes;
+export declare const spinKeyframes: import('_@emotion_serialize@0.11.16@@emotion/serialize').Keyframes;
+export declare const transitionUp = '.22s cubic-bezier(.4,0,.2,1)';
+export declare const transitionDown = '.18s cubic-bezier(.4,0,.2,1)';
+export declare const transitionFlat = '.16s ease-out';

@@ -1,0 +1,36 @@
+{
+  "sourceType": "unambiguous",
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "ie": "11",
+          "firefox": "29",
+          "chrome": "30",
+          "safari": "7"
+        },
+        "spec": true,
+        "loose": true
+      }
+    ],
+    ["@babel/preset-react"],
+    ["@babel/preset-typescript", { "allowDeclareFields": true }]
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": false
+      }
+    ],
+    ["@babel/plugin-transform-typescript", { "allowDeclareFields": true }],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    ["@babel/plugin-proposal-private-methods", { "loose": true }],
+    "emotion",
+    "lodash",
+    ["babel-plugin-webpack-alias", { "config": "./webpack.config.js", "noOutputExtension": true }],
+    ["babel-plugin-typescript-to-proptypes"]
+  ]
+}
