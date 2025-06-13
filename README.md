@@ -18,7 +18,7 @@
 
 ## 仓库地址
 
-[Dux-ui](https://gitee.com/dh1992/dux-ui-react)
+[Dux-ui](https://gitee.com/dh1992/dux-ui)
 
 ## 兼容环境
 
